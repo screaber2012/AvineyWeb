@@ -1,0 +1,20 @@
+body{
+    background-image: url(../img/fondo.png); 
+}
+#centrar{
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    margin-top: -210px;
+    margin-left: -320px;   
+}
+
+.ui-icon.llave{
+    background-image: url(../img/login.png);
+    margin-right: 4px;       
+}
+
+.ui-icon.inicio{
+    background-image: url(../img/inicio.png);
+    margin-right: 4px;       
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28-feb-2013 14:39:21 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.demo.model.Usuario" table="usuario" catalog="aviney">
+        <id name="idusuario" type="java.lang.Integer">
+            <column name="idusuario" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="perfil" class="com.demo.model.Perfil" fetch="select">
+            <column name="perfil_id" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" />
+        </property>
+        <property name="ruc" type="string">
+            <column name="ruc" length="45" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="20" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" />
+        </property>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="estado" />
+        </property>
+        <property name="codigo" type="string">
+            <column name="codigo" length="45" />
+        </property>
+        <property name="cliente" type="string">
+            <column name="cliente" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

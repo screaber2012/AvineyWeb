@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28-feb-2013 14:39:21 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.demo.model.Transaccion" table="transaccion" catalog="aviney">
+        <id name="idTransaccion" type="java.lang.Integer">
+            <column name="idTransaccion" />
+            <generator class="identity" />
+        </id>
+        <property name="cliente" type="string">
+            <column name="cliente" length="45" />
+        </property>
+        <property name="guiaClient" type="string">
+            <column name="guiaClient" length="45" />
+        </property>
+        <property name="guiaTrans" type="string">
+            <column name="guiaTrans" length="45" />
+        </property>
+        <property name="origen" type="string">
+            <column name="origen" length="45" />
+        </property>
+        <property name="destino" type="string">
+            <column name="destino" length="45" />
+        </property>
+        <property name="nroBulto" type="java.lang.Integer">
+            <column name="nroBulto" />
+        </property>
+        <property name="peso" type="java.lang.Double">
+            <column name="Peso" precision="22" scale="0" />
+        </property>
+        <property name="via" type="string">
+            <column name="via" length="45" />
+        </property>
+        <property name="docDespacho" type="string">
+            <column name="docDespacho" length="45" />
+        </property>
+        <property name="transaccioncol" type="string">
+            <column name="Transaccioncol" length="45" />
+        </property>
+        <property name="pesoVolumen" type="java.lang.Double">
+            <column name="pesoVolumen" precision="22" scale="0" />
+        </property>
+        <property name="fechaRecojo" type="date">
+            <column name="fechaRecojo" length="10" />
+        </property>
+        <property name="horaRecojo" type="time">
+            <column name="horaRecojo" length="8" />
+        </property>
+        <property name="fechaDespacho" type="date">
+            <column name="fechaDespacho" length="10" />
+        </property>
+        <property name="horaDespacho" type="time">
+            <column name="horaDespacho" length="8" />
+        </property>
+        <property name="fechaDestino" type="date">
+            <column name="fechaDestino" length="10" />
+        </property>
+        <property name="horaDestino" type="time">
+            <column name="horaDestino" length="8" />
+        </property>
+        <property name="fechaEntrega" type="date">
+            <column name="fechaEntrega" length="10" />
+        </property>
+        <property name="horaEntrega" type="time">
+            <column name="horaEntrega" length="8" />
+        </property>
+        <property name="personaEntrega" type="string">
+            <column name="personaEntrega" length="45" />
+        </property>
+        <property name="dniEntrega" type="string">
+            <column name="dniEntrega" length="45" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" length="45" />
+        </property>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="estado" />
+        </property>
+    </class>
+</hibernate-mapping>

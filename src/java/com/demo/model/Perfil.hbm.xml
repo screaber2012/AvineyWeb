@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28-feb-2013 14:39:21 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.demo.model.Perfil" table="perfil" catalog="aviney">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="25" />
+        </property>
+        <property name="despacho" type="java.lang.Boolean">
+            <column name="despacho" />
+        </property>
+        <property name="ingresoD" type="java.lang.Boolean">
+            <column name="ingresoD" />
+        </property>
+        <property name="reporteD" type="java.lang.Boolean">
+            <column name="reporteD" />
+        </property>
+        <property name="seguimiento" type="java.lang.Boolean">
+            <column name="seguimiento" />
+        </property>
+        <property name="ingresoS" type="java.lang.Boolean">
+            <column name="ingresoS" />
+        </property>
+        <property name="reporteS" type="java.lang.Boolean">
+            <column name="reporteS" />
+        </property>
+        <property name="configuracion" type="java.lang.Boolean">
+            <column name="configuracion" />
+        </property>
+        <property name="perfil" type="java.lang.Boolean">
+            <column name="perfil" />
+        </property>
+        <property name="usuario" type="java.lang.Boolean">
+            <column name="usuario" />
+        </property>
+        <property name="mantenimiento" type="java.lang.Boolean">
+            <column name="mantenimiento" />
+        </property>
+        <property name="cliente" type="java.lang.Boolean">
+            <column name="cliente" />
+        </property>
+        <set name="usuarios" inverse="true">
+            <key>
+                <column name="perfil_id" />
+            </key>
+            <one-to-many class="com.demo.model.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

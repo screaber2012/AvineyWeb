@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28-feb-2013 14:39:21 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.demo.model.Cliente" table="cliente" catalog="aviney">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="idCliente" />
+            <generator class="identity" />
+        </id>
+        <property name="codigoCliente" type="string">
+            <column name="codigoCliente" length="45" />
+        </property>
+        <property name="rucCliente" type="string">
+            <column name="rucCliente" length="45" />
+        </property>
+        <property name="telefonoCliente" type="string">
+            <column name="telefonoCliente" length="45" />
+        </property>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="estado" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" length="45" />
+        </property>
+        <property name="clave" type="string">
+            <column name="clave" length="45" />
+        </property>
+        <property name="seguimiento" type="java.lang.Boolean">
+            <column name="seguimiento" />
+        </property>
+        <property name="despacho" type="java.lang.Boolean">
+            <column name="despacho" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:head>
+        <title>Usuario de Sistema</title>
+        <link rel="stylesheet" href="resources/css/botones.css" />
+    </h:head>
+    <h:body>
+    <!--Cabecera del formulario donde se encuentra esto es igual a todos las paginas JSF-->    
+    <h:form>      
+        <p:menubar autoDisplay="false">  
+        <p:menuitem value="Inicio" icon="inicio" url="inicio.jsf"/>     
+        <p:submenu rendered="#{loginBean.usuario.perfil.despacho}" label="Ingreso" icon="mante">  
+            <p:menuitem  rendered="#{loginBean.usuario.perfil.ingresoD}" value="Despacho" url="transaccionLoad.jsf" icon="mante" />  
+        </p:submenu>
+        <p:submenu rendered="#{loginBean.usuario.perfil.seguimiento}" label="Seguimiento" icon="mante">  
+            <p:menuitem  rendered="#{loginBean.usuario.perfil.ingresoS}" value="Despacho" url="transaccionView.jsf" icon="mante" />  
+        </p:submenu>
+        <p:submenu rendered="#{loginBean.usuario.perfil.configuracion}" label="Configuracion" icon="mante">  
+            <p:menuitem  rendered="#{loginBean.usuario.perfil.usuario}" value="Usuario" url="usuario.jsf" icon="mante" />  
+            <p:menuitem  rendered="#{loginBean.usuario.perfil.configuracion}" value="Perfil" url="perfil.jsf" icon="mante" /> 
+        </p:submenu>   
+        <p:submenu rendered="#{loginBean.usuario.perfil.mantenimiento}" label="Mantenimiento" icon="mante">  
+            <p:menuitem  rendered="#{loginBean.usuario.perfil.cliente}" value="Cliente" url="cliente.jsf" icon="mante" />  
+        </p:submenu>
+         <p:menuitem value="Contrase&ntilde;a" icon="contra" update=":frmClave:dlgClave" 
+                    oncomplete="dlgClave.show()" actionListener="#{usuarioBean.prepararUsuario(loginBean.usuario.idusuario)}"/>         
+        <p:menuitem value="Salir" url="login.jsf" icon="salir" />
+    </p:menubar>
+        <p:clock/> 
+    </h:form> 
+    <h:form id="frmNuevo">
+            <p:commandButton value="cliente" style="font-style: normal" icon="ui-icon-disk" oncomplete="dlgIngresar.show()"
+                             update=":frmIngresar:dlgIngresar" actionListener="#{clienteBean.inicioCliente()}"/>
+    </h:form> 
+    <!--Tabla donde se contiene la informacion de todos los registros--> 
+    <h:form id="frmPrincipal">  
+        <p:growl id="principal"/> 
+        <p:dataTable id="datatable" var="Cliente" value="#{clienteBean.clientes}" widgetVar="Cliente"
+                     paginator="true" rows="10"  
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                 rowsPerPageTemplate="5,10,15" >  
+            
+            <f:facet name="header">  
+            Usuario de Sistemas
+            </f:facet> 
+            
+            <h:inputHidden value="#{Cliente.idCliente}"/> 
+            
+            <p:column headerText="Codigo" style="text-align: center">  
+                <h:outputText value="#{Cliente.idCliente}" />  
+            </p:column>
+            
+            <p:column headerText="Nombre" style="text-align: center">  
+                <h:outputText value="#{Cliente.codigoCliente}" />  
+            </p:column> 
+            
+            <p:column headerText="Ruc" style="text-align: center">  
+                <h:outputText value="#{Cliente.rucCliente}" />  
+            </p:column> 
+            
+            <p:column headerText="Telefono" style="text-align: center">  
+                <h:outputText value="#{Cliente.telefonoCliente}" />  
+            </p:column> 
+                       
+            <p:column headerText="usuario" style="text-align: center">  
+                <h:outputText value="#{Cliente.usuario}" />  
+            </p:column>
+                           
+            <p:column style="width:8%; text-align: center" >  
+                <p:commandButton oncomplete="dlgActualizar.show()" icon="editar" title="Actualizar Cliente" 
+                                 update=":frmActualizar:dlgActualizar" actionListener="#{clienteBean.prepararCliente(Cliente.idCliente)}"/>  
+                <p:commandButton oncomplete="dlgEliminar.show()" icon="eliminar" title="Eliminar Cliente"
+                                 update=":frmEliminar:dlgEliminar" actionListener="#{clienteBean.prepararCliente(Cliente.idCliente)}"/>                 
+            </p:column> 
+            
+            <f:facet name="footer">  
+                Registrados #{usuarioBean.usuarios.size()} Usuarios.  
+            </f:facet>  
+          </p:dataTable> 
+    </h:form>    
+    <!--Formulario de Ingreso de Registros Nuevos--> 
+    <h:form id="frmIngresar">   
+        <p:dialog header="Ingreso Cliente" widgetVar="dlgIngresar" resizable="false"  
+              modal="true" id="dlgIngresar"> 
+        <p:growl id="growl" showDetail="false" sticky="true" />  
+        
+        <p:panelGrid columns="2" > 
+                                  
+            <h:outputText value="Nombre:   " />   
+            <p:inputText value="#{clienteBean.cliente.codigoCliente}" required="true" label="Name"/> 
+            
+            <h:outputText value="Ruc:   " />   
+            <p:inputText value="#{clienteBean.cliente.rucCliente}" required="true" label="Name"/> 
+            
+            <h:outputText value="Telefono:   " />   
+            <p:inputText value="#{clienteBean.cliente.telefonoCliente}"  label="Name"/>
+            
+            <h:outputText value="Usuario: " />  
+            <p:selectOneMenu value="#{clienteBean.cliente.usuario}" effect="fade" >   
+                <f:selectItems value="#{usuarioBean.usuarios}" var="usuario" itemLabel="#{usuario.nombre}" itemValue="#{usuario.codigo}"/>
+            </p:selectOneMenu>
+                       
+            </p:panelGrid>  
+            <p:commandButton value="Guardar" style="text-align: center" oncomplete="dlgIngresar.hide()" 
+                             update=":frmPrincipal:datatable, growl" actionListener="#{clienteBean.agregarCliente()}"/>
+            <p:commandButton value="Cancelar" style="text-align: center" oncomplete="dlgIngresar.hide()"/>                           
+        </p:dialog> 
+    </h:form>
+   <!--Formulario de Actualizacion de Registros-->      
+    <h:form id="frmActualizar">   
+        <p:dialog header="Agregar Perfil" widgetVar="dlgActualizar" resizable="false"  
+              modal="true" id="dlgActualizar"> 
+        <p:growl id="growl" showDetail="false" sticky="true" /> 
+        
+        <p:panelGrid columns="2" > 
+            
+               <h:outputText value="Nombre:   " />   
+            <p:inputText value="#{clienteBean.cliente.codigoCliente}" required="true" label="Name"/> 
+            
+            <h:outputText value="Ruc:   " />   
+            <p:inputText value="#{clienteBean.cliente.rucCliente}" required="true" label="Name"/> 
+            
+            <h:outputText value="Telefono:   " />   
+            <p:inputText value="#{clienteBean.cliente.telefonoCliente}"  label="Name"/>
+            
+            <h:outputText value="Usuario: " />  
+            <p:selectOneMenu value="#{clienteBean.cliente.usuario}" effect="fade" >   
+                <f:selectItems value="#{usuarioBean.usuarios}" var="usuario" itemLabel="#{usuario.nombre}" itemValue="#{usuario.codigo}"/>
+            </p:selectOneMenu> 
+            
+            </p:panelGrid> 
+            <p:commandButton value="Guardar" style="text-align: center" oncomplete="dlgActualizar.hide()" 
+                             update=":frmPrincipal:datatable,growl" actionListener="#{clienteBean.actualizarCliente()}"/>
+            <p:commandButton value="Cancelar" style="text-align: center" oncomplete="dlgActualizar.hide()"/>                           
+        </p:dialog> 
+    </h:form>
+    <!--Confirmacion de Eliminacion-->     
+    <h:form id="frmEliminar">                       
+    <p:growl id="messages" />    
+       
+    <p:confirmDialog id="dlgEliminar" message="Esta Seguro de Eliminar Cliente?"  
+                header="Iniciando Eliminacion" severity="alert" widgetVar="dlgEliminar">  
+                  
+        <p:commandButton id="confirm" value="Confirmar" update=":frmPrincipal:datatable, messages" oncomplete="dlgEliminar.hide()"  
+                         actionListener="#{clienteBean.eliminarCliente()}" />  
+        <p:commandButton id="decline" value="Cancelar" onclick="dlgEliminar.hide()" type="button" />   
+                  
+    </p:confirmDialog>   
+    </h:form> 
+    <!--Formulario de invocacion a losa tipos de fechas usado en el ingreso de datos-->     
+    <p:dialog header="Selected Dates" widgetVar="dialog"   
+            showEffect="fade" hideEffect="fade">  
+      
+        <h:panelGrid id="display" columns="2" cellpadding="5">  
+          
+            <h:outputText value="Inline Date:" />  
+            <h:outputText value="#{calendarBean.date1}" id="inlineDate">  
+                <f:convertDateTime pattern="d/M/yyyy"/>  
+            </h:outputText>  
+              
+            <h:outputText value="Popup Date:" />  
+            <h:outputText value="#{calendarBean.date2}" id="popupDate">  
+                <f:convertDateTime pattern="d/M/yyyy"/>  
+            </h:outputText>  
+              
+            <h:outputText value="Popup Button Date: " />  
+            <h:outputText value="#{calendarBean.date3}" id="popupButtonDate">  
+                <f:convertDateTime pattern="d/M/yyyy"/>  
+            </h:outputText>  
+              
+        </h:panelGrid>           
+    </p:dialog>
+    <h:form id="frmClave">   
+        <p:dialog header="Cambio Clave" widgetVar="dlgClave" resizable="false"  
+              modal="true" id="dlgClave"> 
+        <p:growl id="growl" showDetail="false" sticky="true" />  
+        
+        <p:panelGrid columns="2" > 
+                                  
+            <h:outputText value="Cliente:   " />         
+            <h:outputText value="#{usuarioBean.usuario.nombre}" style="font-weight:bold"/>                
+            
+            <h:outputLabel for="pwd1" value="Password 1: *" />  
+            <p:password id="pwd1" value="#{usuarioBean.usuario.password}" match="pwd2" label="Password 1" required="true"/>  
+  
+            <h:outputLabel for="pwd2" value="Password 2: *" />  
+            <p:password id="pwd2" value="#{usuarioBean.usuario.password}" label="Password 2" required="true"/>  
+           
+            
+            </p:panelGrid>  
+            <p:commandButton value="Guardar" style="text-align: center" oncomplete="dlgClave.hide()" 
+                             update=":frmClave:dlgClave, growl" actionListener="#{usuarioBean.actualizarUsuario()}" />
+            <p:commandButton value="Cancelar" style="text-align: center" oncomplete="dlgClave.hide()"/>                           
+        </p:dialog> 
+    </h:form>
+    </h:body>
+</html>
+

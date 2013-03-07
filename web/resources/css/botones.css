@@ -1,0 +1,63 @@
+ html{
+                height: 100%;
+            }
+            body{
+                height: 80%;
+            } 
+.ui-icon.inicio{
+    background-image: url(../img/inicio.png);
+    margin-right: 6px;       
+}
+
+.ui-icon.mante{
+    background-image: url(../img/mant.png);
+    margin-right: 6px;       
+}
+
+.ui-icon.report{
+    background-image: url(../img/report.png);
+    margin-right: 6px;       
+}
+
+.ui-icon.conf{
+    background-image: url(../img/conf.png);
+    margin-right: 6px;       
+}
+
+.ui-icon.contra{
+    background-image: url(../img/contra.png);
+    margin-right: 6px;       
+}
+
+.ui-icon.salir{
+    background-image: url(../img/salir.png);
+    margin-right: 6px;       
+}
+
+.ui-icon.subconf{
+    background-image: url(../img/conf_sub.png);
+    margin-right: 6px;       
+}
+
+.ui-icon.agregar{
+    background-image: url(../img/agregar.png);
+    margin-right: 6px;       
+}
+.ui-icon.editar{
+    background-image: url(../img/editar.png);
+    margin-right: 6px;       
+}
+.ui-icon.eliminar{
+    background-image: url(../img/eliminar.png);
+    margin-right: 6px;       
+}
+
+.ui-icon.pdf{
+    background-image: url(../img/pdf.png);
+    margin-right: 6px;       
+}
+
+.ui-icon.xls{
+    background-image: url(../img/csv.png);
+    margin-right: 6px;       
+}

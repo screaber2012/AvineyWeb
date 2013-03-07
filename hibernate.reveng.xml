@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="demo"/>
+  <table-filter match-name="lfactura"/>
+  <table-filter match-name="padelanto"/>
+  <table-filter match-name="ocompra"/>
+  <table-filter match-name="dbancaria"/>
+  <table-filter match-name="fpendiente"/>
+  <table-filter match-name="fcobrar"/>
+  <table-filter match-name="ocancelado"/>
+  <table-filter match-name="perfil"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="saldo"/>
+</hibernate-reverse-engineering>

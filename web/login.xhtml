@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Login Con Permisos</title>
+        <link rel="stylesheet" href="resources/css/style.css" />
+    </h:head>
+    <h:body>
+        <h:outputLink id="loginLink" value="javascript:void(0)" onclick="dlg.show()" title="login">     
+        <p:graphicImage id="centrar" value="/resources/img/ingreso.png" />  
+        </h:outputLink>  
+  
+    <p:growl id="growl" showDetail="false" sticky="true" />     
+    <p:dialog id="dialog" header="Acceso Restringuido" widgetVar="dlg" modal="true">  
+    <h:form>  
+  
+        <h:panelGrid columns="2" cellpadding="5">  
+            <h:outputLabel for="usuario" value="Usuario:" />  
+            <p:inputText value="#{loginBean.usuario.username}"   
+                    id="usuario" required="true" label="usuario" />  
+              
+            <h:outputLabel for="clave" value="Contrase&ntilde;a:" />  
+            <h:inputSecret value="#{loginBean.usuario.password}"   
+                    id="clave" required="true" label="clave" />  
+              
+            <f:facet name="footer">  
+                <p:commandButton id="loginButton" value="Ingresar"  
+                                 actionListener="#{loginBean.login}" icon="llave"  
+                    oncomplete="handleLoginRequest(xhr, status, args)"/>  
+            </f:facet>  
+        </h:panelGrid>          
+    </h:form>  
+</p:dialog>  
+  
+<script type="text/javascript">  
+    function handleLoginRequest(xhr, status, args) {  
+        if(args.validationFailed || !args.loggedIn) {  
+            jQuery('#dialog').effect("shake", { times:3 }, 100);  
+        } else {  
+            dlg.hide();  
+            jQuery('#loginLink').fadeOut();
+            window.location="/Aviney/inicio.jsf"
+        }  
+    }  
+</script>  
+    </h:body>
+</html>
+

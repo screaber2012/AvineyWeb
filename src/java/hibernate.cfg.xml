@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://mysql-aviney.jelastic.elastx.net:3306/aviney</property>
+    <property name="hibernate.connection.username">flopez</property>
+    <property name="hibernate.connection.password">12345678</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="com/demo/model/Usuario.hbm.xml"/>
+    <mapping resource="com/demo/model/Cliente.hbm.xml"/>
+    <mapping resource="com/demo/model/Transaccion.hbm.xml"/>
+    <mapping resource="com/demo/model/Perfil.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
